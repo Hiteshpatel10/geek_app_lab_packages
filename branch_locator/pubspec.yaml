@@ -1,23 +1,21 @@
-name: core_calculator
-description: "A new Flutter project."
+name: branch_locator
+description: "Bank Branch Finder"
 version: 0.0.1
 homepage:
 
 environment:
-  sdk: '>=3.4.1 <4.0.0'
+  sdk: '>=3.4.4 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  fl_chart: ^0.69.0
-  validator_forge: ^1.0.0
   bloc: ^8.1.4
   flutter_bloc: ^8.1.6
 
   core_utility:
-    path: /Users/user/Documents/hp/GITHUB/geek_app_lab_packages/core_utility
+    path: ../core_utility
 
 dev_dependencies:
   flutter_test:
