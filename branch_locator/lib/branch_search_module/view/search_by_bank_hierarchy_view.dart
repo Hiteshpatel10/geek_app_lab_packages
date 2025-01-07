@@ -12,12 +12,16 @@ class SearchByBankHierarchyView extends StatefulWidget {
 
 class _SearchByBankHierarchyViewState extends State<SearchByBankHierarchyView> {
   final _controller = PageController();
-
+  late final SearchByBankHierarchyCubit _searchByBankHierarchyCubit;
+  String? _bankName;
+  String? _state;
+  String? _district;
+  String? _branch;
   @override
   void initState() {
-    final searchByBankHierarchyCubit = BlocProvider.of<SearchByBankHierarchyCubit>(context);
+    _searchByBankHierarchyCubit = BlocProvider.of<SearchByBankHierarchyCubit>(context);
 
-    searchByBankHierarchyCubit.getBankHierarchy();
+    _searchByBankHierarchyCubit.getBankHierarchy();
     super.initState();
   }
 
@@ -31,18 +35,82 @@ class _SearchByBankHierarchyViewState extends State<SearchByBankHierarchyView> {
             return PageView(
               controller: _controller,
               onPageChanged: (value) {
-                final searchByBankHierarchyCubit =
-                    BlocProvider.of<SearchByBankHierarchyCubit>(context);
-
-                searchByBankHierarchyCubit.getBankHierarchy(
-                  bankName: "HDFC Bank",
+                _searchByBankHierarchyCubit.getBankHierarchy(
+                  bankName: _bankName,
+                  district: _district,
+                  state: _state,
+                  showLoading: false,
                 );
               },
               children: [
-                LocatorSearchableSelect(list: state.bankHierarchy.result?.banks ?? []),
-                LocatorSearchableSelect(list: state.bankHierarchy.result?.states ?? []),
-                LocatorSearchableSelect(list: state.bankHierarchy.result?.districts ?? []),
-                LocatorSearchableSelect(list: state.bankHierarchy.result?.branch ?? []),
+                StreamBuilder<bool>(
+                  stream: _searchByBankHierarchyCubit.isLoading,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData && snapshot.data == true) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    return LocatorSearchableSelect(
+                      list: state.bankHierarchy.result?.banks ?? [],
+                      onTap: (value) {
+                        _bankName = value;
+                        _controller.nextPage(
+                          duration: const Duration(milliseconds: 100),
+                          curve: Curves.linear,
+                        );
+                      },
+                    );
+                  },
+                ),
+                StreamBuilder<bool>(
+                  stream: _searchByBankHierarchyCubit.isLoading,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData && snapshot.data == true) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    return LocatorSearchableSelect(
+                      list: state.bankHierarchy.result?.states ?? [],
+                      onTap: (value) {
+                        _state = value;
+                        _controller.nextPage(
+                          duration: const Duration(milliseconds: 100),
+                          curve: Curves.linear,
+                        );
+                      },
+                    );
+                  },
+                ),
+                StreamBuilder<bool>(
+                  stream: _searchByBankHierarchyCubit.isLoading,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData && snapshot.data == true) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    return LocatorSearchableSelect(
+                      list: state.bankHierarchy.result?.districts ?? [],
+                      onTap: (value) {
+                        _district = value;
+                        _controller.nextPage(
+                          duration: const Duration(milliseconds: 100),
+                          curve: Curves.linear,
+                        );
+                      },
+                    );
+                  },
+                ),
+                StreamBuilder<bool>(
+                  stream: _searchByBankHierarchyCubit.isLoading,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData && snapshot.data == true) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    return LocatorSearchableSelect(
+                      list: state.bankHierarchy.result?.branch ?? [],
+                      onTap: (value) {
+                        _branch = value;
+                      },
+                    );
+                  },
+                ),
               ],
             );
           }

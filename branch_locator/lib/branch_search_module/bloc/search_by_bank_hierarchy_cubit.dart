@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:branch_locator/branch_search_module/model/bank_hierarchy_model.dart';
 import 'package:branch_locator/util/locator_api_endpoints.dart';
@@ -7,12 +8,18 @@ import 'package:meta/meta.dart';
 part 'search_by_bank_hierarchy_state.dart';
 
 class SearchByBankHierarchyCubit extends Cubit<SearchByBankHierarchyState> {
-  SearchByBankHierarchyCubit() : super(SearchByBankHierarchyInitial());
+  SearchByBankHierarchyCubit() : super(SearchByBankHierarchyInitial()) {
+    _loadingController = StreamController<bool>.broadcast();
+    isLoading = _loadingController.stream;
+  }
 
+  late final StreamController<bool> _loadingController;
+  late final Stream<bool> isLoading;
 
-  getBankHierarchy({String? bankName, String? state, String? district}) async {
+  Future<void> getBankHierarchy({String? bankName, String? state, String? district, bool showLoading = true}) async {
     try {
-      // emit(BankHierarchyLoading());
+      _loadingController.add(true);
+      if(showLoading) emit(BankHierarchyLoading());
 
       final postData = {
         if (bankName != null) "bank_name": bankName,
@@ -26,13 +33,19 @@ class SearchByBankHierarchyCubit extends Cubit<SearchByBankHierarchyState> {
         apiEndPoint: LocatorApiEndpoints.bankingHierarchy,
       );
 
-
       final model = BankHierarchyModel.fromJson(response);
 
       emit(BankHierarchySuccess(model));
     } catch (e) {
-
       emit(BankHierarchyError('An error occurred: $e'));
+    } finally {
+      _loadingController.add(false);
     }
+  }
+
+  @override
+  Future<void> close() {
+    _loadingController.close();
+    return super.close();
   }
 }
