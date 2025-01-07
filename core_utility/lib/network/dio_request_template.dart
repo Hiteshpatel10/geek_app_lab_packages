@@ -40,7 +40,7 @@ Future<dynamic> getRequest({
     rethrow;
   }
 
-  return response;
+  return response.data;
 }
 
 Future<dynamic> postRequest({
@@ -70,7 +70,7 @@ Future<dynamic> postRequest({
       );
     }
 
-    debugPrint("~~~~~~~~~~~~~~~~~~~~ $apiEndPoint postRequest End ~~~~~~~~~~~~~~~~~~~~ ");
+    debugPrint("~~~~~~~~~~~~~~~~~~~~ $apiEndPoint postRequest End~~~~~~~~~~~~~~~~~~~~ ");
   } on DioError catch (dioError) {
     debugPrint("Error in getRequest: Failed to call api ${dioError.message}");
     rethrow;
@@ -79,5 +79,5 @@ Future<dynamic> postRequest({
     rethrow;
   }
 
-  return response;
+  return response.data;
 }

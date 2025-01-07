@@ -13,9 +13,14 @@ dependencies:
 
   bloc: ^8.1.4
   flutter_bloc: ^8.1.6
+  validator_forge: ^2.0.0
+  alphabet_navigation: ^2.1.0
 
   core_utility:
-    path: ../core_utility
+    path: /Users/user/Documents/hp/GITHUB/geek_app_lab_packages/core_utility
+
+
+
 
 dev_dependencies:
   flutter_test:
