@@ -22,7 +22,7 @@ class SearchByBankHierarchyCubit extends Cubit<SearchByBankHierarchyState> {
       if(showLoading) emit(BankHierarchyLoading());
 
       final postData = {
-        if (bankName != null) "bank_name": bankName,
+        if (bankName != null) "bank": bankName,
         if (bankName != null && state != null) "state": state,
         if (bankName != null && state != null && district != null) "district": district,
       };

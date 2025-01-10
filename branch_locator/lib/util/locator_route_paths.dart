@@ -1,5 +1,5 @@
 class LocatorRoutePaths {
-  static const String landing = "/";
+  static const String landing = "locator-landing";
 
   static const String searchByBankHierarchy = "/locator-searchByBankHierarchy";
   static const String searchByBranch = "/locator-searchByBranch";

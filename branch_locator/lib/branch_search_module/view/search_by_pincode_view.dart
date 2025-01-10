@@ -63,7 +63,7 @@ class _SearchByPincodeViewState extends State<SearchByPincodeView> {
           ),
           BlocBuilder<GetBanksInCubit, GetBanksInState>(
             builder: (context, state) {
-              if (state is GetBanksInSuccess) {
+              if (state is GetBanksInPincodeSuccess) {
                 return Flexible(
                   child: ListView.builder(
                     shrinkWrap: true,
@@ -74,7 +74,7 @@ class _SearchByPincodeViewState extends State<SearchByPincodeView> {
                         onTap: () {
                           CoreNavigator.pushNamed(LocatorRoutePaths.branchList, arguments: {
                             "post_data": {
-                              "branch": state.query,
+                              "district": state.postOffice.result?.districtName,
                               "bank": item,
                             }
                           });

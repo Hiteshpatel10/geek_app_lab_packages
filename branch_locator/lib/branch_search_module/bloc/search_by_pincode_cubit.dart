@@ -22,7 +22,7 @@ class GetBanksInCubit extends Cubit<GetBanksInState> {
 
       final response = await postRequest(
         postData: {
-          "state": model.result?.stateName,
+          "district": model.result?.districtName,
         },
         requestFrom: RequestFrom.branchLocator,
         apiEndPoint: LocatorApiEndpoints.getBanksIn,

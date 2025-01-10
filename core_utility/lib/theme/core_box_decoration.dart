@@ -13,7 +13,7 @@ class CoreBoxDecoration {
     List<BoxShadow> boxShadow = const [
       BoxShadow(
         offset: Offset(0, 4),
-        blurRadius: 12,
+        blurRadius: 14,
         color: CoreColors.black04,
       )
     ],
