@@ -13,7 +13,9 @@ class LocatorSearchableSelect extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (list.isEmpty == true) {
-      return Text("dsfsd");
+      return const Center(
+        child: Text("Empty Data"),
+      );
     }
     return AlphabetNavigation(
       stringList: list,

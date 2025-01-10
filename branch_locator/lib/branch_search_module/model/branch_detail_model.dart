@@ -10,13 +10,13 @@ class BranchDetailModel {
     if (json['result'] != null) {
       result = [];
       json['result'].forEach((v) {
-        result?.add(Result.fromJson(v));
+        result?.add(BranchDetail.fromJson(v));
       });
     }
     status = json['status'];
   }
   String? message;
-  List<Result>? result;
+  List<BranchDetail>? result;
   num? status;
 
   Map<String, dynamic> toJson() {
@@ -30,8 +30,8 @@ class BranchDetailModel {
   }
 }
 
-class Result {
-  Result({
+class BranchDetail {
+  BranchDetail({
     this.id,
     this.bankName,
     this.ifsc,
@@ -53,9 +53,9 @@ class Result {
     this.updatedAt,
   });
 
-  Result.fromJson(dynamic json) {
+  BranchDetail.fromJson(dynamic json) {
     id = json['id'];
-    bankName = json['bank_name'];
+    bankName = json['bank'];
     ifsc = json['ifsc'];
     branch = json['branch'];
     address = json['address'];

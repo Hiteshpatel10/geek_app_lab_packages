@@ -6,9 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BranchDetailView extends StatefulWidget {
-  const BranchDetailView({super.key, required this.postData});
+  const BranchDetailView({super.key, required this.postData, required this.branchDetail});
 
   final Map<String, dynamic> postData;
+  final BranchDetail? branchDetail;
 
   @override
   State<BranchDetailView> createState() => _BranchDetailViewState();
@@ -23,11 +24,15 @@ class _BranchDetailViewState extends State<BranchDetailView> {
   void initState() {
     final branchDetailCubit = BlocProvider.of<BranchDetailCubit>(context);
 
-    branchDetailCubit.getBranchDetail(postData: widget.postData);
+    if (widget.branchDetail == null) {
+      branchDetailCubit.getBranchDetail(postData: widget.postData);
+    } else {
+      _buildBranchData(widget.branchDetail);
+    }
     super.initState();
   }
 
-  _buildBranchData(Result? branchDetail) {
+  _buildBranchData(BranchDetail? branchDetail) {
     _basicInfo = [
       CoreKeyValuePairModel(key: "IFSC Code", value: branchDetail?.ifsc),
       CoreKeyValuePairModel(key: "MICR Code", value: branchDetail?.micr),
@@ -54,40 +59,20 @@ class _BranchDetailViewState extends State<BranchDetailView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Branch Detail")),
-      body: BlocBuilder<BranchDetailCubit, BranchDetailState>(
-        builder: (context, state) {
-          if (state is BranchDetailSuccess) {
-            _buildBranchData(state.branchDetail.result?.first);
-            return SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    state.branchDetail.result?.first.bankName ?? '',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    state.branchDetail.result?.first.address ?? '',
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                  const SizedBox(height: 20),
-                  ..._buildInfoCard("Basic Information", _basicInfo),
-                  const SizedBox(height: 16),
-                  ..._buildInfoCard("Address Details", _address),
-                  const SizedBox(height: 16),
-                  ..._buildInfoCard("Banking Features", _bankingFeature),
-                ],
-              ),
-            );
-          }
+      body: widget.branchDetail != null
+          ? _buildBranchDetail(widget.branchDetail)
+          : BlocBuilder<BranchDetailCubit, BranchDetailState>(
+              builder: (context, state) {
+                if (state is BranchDetailSuccess) {
+                  _buildBranchData(state.branchDetail.result?.first);
+                  return _buildBranchDetail(state.branchDetail.result?.first);
+                }
 
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        },
-      ),
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              },
+            ),
     );
   }
 
@@ -107,13 +92,17 @@ class _BranchDetailViewState extends State<BranchDetailView> {
               children: [
                 Text(
                   item.key,
-                  style:
-                      Theme.of(context).textTheme.bodyLarge?.copyWith(color: CoreColors.shuttleGrey),
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge
+                      ?.copyWith(color: CoreColors.shuttleGrey),
                 ),
                 Text(
                   item.value ?? "N/A",
-                  style:
-                      Theme.of(context).textTheme.bodyLarge?.copyWith(color: CoreColors.darkJungleGreen),
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge
+                      ?.copyWith(color: CoreColors.darkJungleGreen),
                 ),
               ],
             ),
@@ -121,5 +110,31 @@ class _BranchDetailViewState extends State<BranchDetailView> {
         },
       ),
     ];
+  }
+
+  _buildBranchDetail(BranchDetail? branchDetail) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            branchDetail?.bankName ?? '',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          const SizedBox(height: 4),
+          Text(
+            branchDetail?.address ?? '',
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          const SizedBox(height: 20),
+          ..._buildInfoCard("Basic Information", _basicInfo),
+          const SizedBox(height: 16),
+          ..._buildInfoCard("Address Details", _address),
+          const SizedBox(height: 16),
+          ..._buildInfoCard("Banking Features", _bankingFeature),
+        ],
+      ),
+    );
   }
 }

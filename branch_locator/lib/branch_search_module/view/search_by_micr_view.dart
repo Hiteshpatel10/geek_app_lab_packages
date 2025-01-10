@@ -3,14 +3,14 @@ import 'package:core_utility/navigation/core_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:validator_forge/validator_forge.dart';
 
-class SearchByMicrView extends StatefulWidget {
-  const SearchByMicrView({super.key});
+class SearchByMICRView extends StatefulWidget {
+  const SearchByMICRView({super.key});
 
   @override
-  State<SearchByMicrView> createState() => _SearchByMicrViewState();
+  State<SearchByMICRView> createState() => _SearchByMICRViewState();
 }
 
-class _SearchByMicrViewState extends State<SearchByMicrView> {
+class _SearchByMICRViewState extends State<SearchByMICRView> {
   late final TextEditingController _textFiledController;
   late final GlobalKey<FormState> _formKey;
 
