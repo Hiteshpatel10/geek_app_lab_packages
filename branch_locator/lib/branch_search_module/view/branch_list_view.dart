@@ -17,7 +17,7 @@ class _BranchListViewState extends State<BranchListView> {
   late final BranchDetailCubit _branchDetailCubit;
   @override
   void initState() {
-    _branchDetailCubit = BlocProvider.of<BranchDetailCubit>(context);
+    _branchDetailCubit = BlocProvider.of<BranchDetailCubit>(context)..onInit();
     _branchDetailCubit.getBranchDetail(postData: widget.postData ?? {});
     super.initState();
   }
@@ -25,7 +25,9 @@ class _BranchListViewState extends State<BranchListView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text("Select Branch"),
+      ),
       body: BlocBuilder<BranchDetailCubit, BranchDetailState>(
         builder: (context, state) {
           if (state is BranchDetailSuccess) {
@@ -63,9 +65,15 @@ class _BranchListViewState extends State<BranchListView> {
             );
           }
 
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          if (state is BranchDetailLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          if (state is BranchDetailError) {
+            return const Center(child: Text("Something went wrong"));
+          }
+
+          return const SizedBox.shrink();
         },
       ),
     );

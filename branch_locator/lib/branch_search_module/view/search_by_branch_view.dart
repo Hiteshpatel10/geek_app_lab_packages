@@ -1,4 +1,3 @@
-import 'package:branch_locator/branch_search_module/bloc/branch_detail_cubit.dart';
 import 'package:branch_locator/branch_search_module/bloc/search_by_pincode_cubit.dart';
 import 'package:branch_locator/util/locator_route_paths.dart';
 import 'package:core_utility/core_util.dart';
@@ -23,7 +22,7 @@ class _SearchByBranchViewState extends State<SearchByBranchView> {
   @override
   void initState() {
     _textFiledController = TextEditingController();
-    _searchByPincodeCubit = BlocProvider.of<GetBanksInCubit>(context);
+    _searchByPincodeCubit = BlocProvider.of<GetBanksInCubit>(context)..onInit();
 
     _debouncer = CoreDebouncer(milliseconds: 400);
 
@@ -33,7 +32,9 @@ class _SearchByBranchViewState extends State<SearchByBranchView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text("Search by Branch"),
+      ),
       body: Column(
         children: [
           Padding(
@@ -95,9 +96,16 @@ class _SearchByBranchViewState extends State<SearchByBranchView> {
                 );
               }
 
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+              if (state is GetBanksInLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+
+              if (state is GetBanksInError) {
+                return const Center(child: Text("Something went wrong"));
+              }
+              return const SizedBox.shrink();
             },
           ),
         ],

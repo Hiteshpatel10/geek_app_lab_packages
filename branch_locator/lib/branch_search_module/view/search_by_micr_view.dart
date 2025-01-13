@@ -24,7 +24,9 @@ class _SearchByMICRViewState extends State<SearchByMICRView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text("Search by Micr"),
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         child: Column(
@@ -44,8 +46,8 @@ class _SearchByMICRViewState extends State<SearchByMICRView> {
               onChanged: (value) {},
               validator: (value) {
                 return ValidationBuilder()
-                    .required('Enter ifsc code')
-                    .matchRegex(r"^[A-Za-z]{4}0[A-Z0-9a-z]{6}$", "Invalid IFSC Code")
+                    .required('Enter micr code')
+                    .matchRegex(r"^[0-9]{1,9}$", "Invalid micr Code")
                     .build(value);
               },
             ),

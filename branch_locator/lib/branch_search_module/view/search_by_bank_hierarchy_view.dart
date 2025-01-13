@@ -35,7 +35,9 @@ class _SearchByBankHierarchyViewState extends State<SearchByBankHierarchyView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text("Branch Finder"),
+      ),
       body: BlocBuilder<SearchByBankHierarchyCubit, SearchByBankHierarchyState>(
         builder: (context, state) {
           if (state is BankHierarchySuccess) {
@@ -186,9 +188,11 @@ class _SearchByBankHierarchyViewState extends State<SearchByBankHierarchyView> {
             return _buildShimmerList();
           }
 
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          if (state is BankHierarchyError) {
+            return const Center(child: Text("Something went wrong"));
+          }
+
+          return const SizedBox.shrink();
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

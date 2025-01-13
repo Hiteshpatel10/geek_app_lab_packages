@@ -22,7 +22,7 @@ class _BranchDetailViewState extends State<BranchDetailView> {
 
   @override
   void initState() {
-    final branchDetailCubit = BlocProvider.of<BranchDetailCubit>(context);
+    final branchDetailCubit = BlocProvider.of<BranchDetailCubit>(context)..onInit();
 
     if (widget.branchDetail == null) {
       branchDetailCubit.getBranchDetail(postData: widget.postData);
@@ -68,9 +68,15 @@ class _BranchDetailViewState extends State<BranchDetailView> {
                   return _buildBranchDetail(state.branchDetail.result?.first);
                 }
 
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
+                if (state is BranchDetailLoading) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+
+                if (state is BranchDetailError) {
+                  return const Center(child: Text("Something went wrong"));
+                }
+
+                return const SizedBox.shrink();
               },
             ),
     );

@@ -24,7 +24,9 @@ class _SearchByIfscViewState extends State<SearchByIfscView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text("Search by IFSC"),
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         child: Column(
@@ -41,7 +43,6 @@ class _SearchByIfscViewState extends State<SearchByIfscView> {
                 fillColor: Colors.white,
                 filled: true,
               ),
-              onChanged: (value) {},
               validator: (value) {
                 return ValidationBuilder()
                     .required('Enter ifsc code')

@@ -67,4 +67,9 @@ class GetBanksInCubit extends Cubit<GetBanksInState> {
       emit(GetBanksInError('An error occurred: $e'));
     }
   }
+
+
+  onInit(){
+    emit(GetBanksInInitial());
+  }
 }

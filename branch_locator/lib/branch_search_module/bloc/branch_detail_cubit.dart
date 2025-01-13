@@ -45,4 +45,8 @@ class BranchDetailCubit extends Cubit<BranchDetailState> {
       return null;
     }
   }
+
+  onInit(){
+    emit(BranchDetailInitial());
+  }
 }

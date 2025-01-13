@@ -9,15 +9,12 @@ class LocatorLandingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Bank Locator"),
-        centerTitle: true,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: kToolbarHeight),
             ElevatedButton(
               onPressed: () => CoreNavigator.pushNamed(LocatorRoutePaths.searchByBankHierarchy),
               style: ElevatedButton.styleFrom(
@@ -52,7 +49,8 @@ class LocatorLandingView extends StatelessWidget {
             const SizedBox(height: 20),
             const Text("Other Search Methods", style: TextStyle(fontSize: 18)),
             const SizedBox(height: 12),
-            Expanded(
+            SizedBox(
+              height: 440,
               child: GridView.count(
                 crossAxisCount: 2,
                 crossAxisSpacing: 16.0,
