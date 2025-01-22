@@ -3,6 +3,7 @@ import 'package:branch_locator/util/locator_route_paths.dart';
 import 'package:core_utility/core_util.dart';
 import 'package:core_utility/navigation/core_navigator.dart';
 import 'package:core_utility/theme/core_box_decoration.dart';
+import 'package:core_utility/theme/core_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:validator_forge/validator_forge.dart';
@@ -105,11 +106,82 @@ class _SearchByBranchViewState extends State<SearchByBranchView> {
               if (state is GetBanksInError) {
                 return const Center(child: Text("Something went wrong"));
               }
-              return const SizedBox.shrink();
+              return Flexible(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  child: _buildSuggestion(),
+                ),
+              );
             },
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildSuggestion() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        RichText(
+          text: TextSpan(
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: CoreColors.blackEel),
+            children: [
+              TextSpan(
+                text: "What is a Bank Branch?\n",
+                style:
+                    Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+              ),
+              const TextSpan(
+                text:
+                    'A bank branch is a physical location where a bank or financial institution offers services to customers. These services can be in-person or automated.',
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 16),
+        RichText(
+          text: TextSpan(
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: CoreColors.blackEel),
+            children: [
+              TextSpan(
+                text: "How to Find a Bank Branch?\n",
+                style:
+                    Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+              ),
+              const TextSpan(
+                text:
+                    'To find a bank branch location, you can use a bank\'s branch locator tool, search online directories, or use Google Maps.\n\n'
+                    '**Use a bank\'s branch locator tool:**\n'
+                    'Many banks have branch locator tools on their websites. You can search for branches by name, address, state, district, or other parameters.\n\n'
+                    '**Search online directories:**\n'
+                    'Online directories often have databases of banks and public offices. These directories can provide information about branches, including contact information and the names of senior officials.\n\n'
+                    '**Use Google Maps:**\n'
+                    'You can search for a bank branch on Google Maps to find its location, directions, and contact information. Google Maps can also provide information about traffic and public transportation.',
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 16),
+        RichText(
+          text: TextSpan(
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: CoreColors.blackEel),
+            children: [
+              TextSpan(
+                text: "Using IFSC or MICR Code to Find a Bank Branch:\n",
+                style:
+                    Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+              ),
+              const TextSpan(
+                  text: 'You can also use the IFSC or MICR code to find a bank branch.\n\n'
+                      '**IFSC Code:**\n'
+                      'The IFSC code is an 11-character code that can be used to find a bank branch\'s details, including its address.\n\n'
+                      '**MICR Code:**\n'
+                      'The MICR code is a 9-digit code that can be used to identify a specific bank branch.\n'),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

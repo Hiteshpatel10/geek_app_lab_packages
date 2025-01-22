@@ -1,5 +1,6 @@
 import 'package:branch_locator/util/locator_route_paths.dart';
 import 'package:core_utility/navigation/core_navigator.dart';
+import 'package:core_utility/theme/core_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:validator_forge/validator_forge.dart';
 
@@ -51,6 +52,9 @@ class _SearchByMICRViewState extends State<SearchByMICRView> {
                     .build(value);
               },
             ),
+            const SizedBox(height: 20), // Spacer between the text field and suggestions
+
+            _buildSuggestion(),
           ],
         ),
       ),
@@ -69,6 +73,60 @@ class _SearchByMICRViewState extends State<SearchByMICRView> {
         },
         child: const Text("Search"),
       ),
+    );
+  }
+
+  Widget _buildSuggestion() {
+    return Column(
+      children: [
+        RichText(
+          text: TextSpan(
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: CoreColors.blackEel),
+            children: [
+              TextSpan(
+                text: "What is MICR?\n",
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const TextSpan(
+                text:
+                    'Magnetic Ink Character Recognition (MICR) is a 9-digit code used to identify a particular bank branch within the Electronic Clearing System (ECS). It is printed on the cheque leaf issued by the bank and often on the passbook issued to the account holder.',
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 20),
+        RichText(
+          text: TextSpan(
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: CoreColors.blackEel),
+            children: [
+              TextSpan(
+                text: "Where to Find MICR Code?\n",
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const TextSpan(
+                text:
+                    'The MICR code can be found on the cheque leaf issued by the bank, and it is generally printed on the passbook provided to the account holder.',
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 20),
+        RichText(
+          text: TextSpan(
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: CoreColors.blackEel),
+            children: [
+              TextSpan(
+                text: "MICR Code Format:\n",
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const TextSpan(
+                text:
+                    'The 9-digit MICR code is structured as follows:\n1. The first three digits represent the city.\n2. The next three digits indicate the bank code.\n3. The last three digits specify the bank branch code.\nFor example, "700002021" refers to the SBI branch in Kolkata, where "700" identifies the city, "002" is the bank code, and "021" is the branch code.',
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

@@ -119,7 +119,12 @@ class CoreAppTheme {
               color: Theme.of(context).colorScheme.error, // Error text color
             ),
           ),
-      elevatedButtonTheme: elevatedButtonTheme,
+      elevatedButtonTheme: elevatedButtonTheme ??
+          ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              minimumSize: Size(MediaQuery.of(context).size.width * 0.8, 54),
+            ),
+          ),
       radioTheme: radioTheme,
       dialogTheme: dialogTheme ??
           const DialogTheme(
