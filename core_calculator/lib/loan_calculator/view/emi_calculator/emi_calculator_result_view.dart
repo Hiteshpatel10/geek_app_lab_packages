@@ -3,6 +3,7 @@ import 'package:core_calculator/components/core_report_view.dart';
 import 'package:core_calculator/components/tab_bar/core_flat_tab_bar.dart';
 import 'package:core_calculator/loan_calculator/bloc/emi_calculator_cubit.dart';
 import 'package:core_calculator/loan_calculator/functions/emi_function.dart';
+import 'package:core_calculator/loan_calculator/functions/emi_pdf_report.dart';
 import 'package:core_utility/core_mode.dart';
 import 'package:core_utility/extensions/currency_formatter/inr_formatter.dart';
 import 'package:core_utility/extensions/num_extensions.dart';
@@ -46,6 +47,19 @@ class EmiResultView extends StatelessWidget {
 
           return const CircularProgressIndicator();
         },
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: ElevatedButton(
+        onPressed: () {
+
+          final bloc = BlocProvider.of<EmiCalculatorCubit>(context);
+
+          if(bloc.state is EmiCalculatorSuccess){
+            final successState = bloc.state as EmiCalculatorSuccess;
+            emiPDFReport(successState.emiModel.report);
+          }
+        },
+        child: Text("data"),
       ),
     );
   }

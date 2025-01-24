@@ -45,7 +45,6 @@ class EmiCalculatorCubit extends Cubit<EmiCalculatorState> {
     emit(EmiCalculatorSuccess(model));
   }
 
-
   calculatePrinciple({
     required int tenure,
     required double emi,
@@ -53,7 +52,7 @@ class EmiCalculatorCubit extends Cubit<EmiCalculatorState> {
   }) {
     emit(EmiCalculatorLoading());
 
-    final principle = calculateLoanAmount( emi, interestRate, tenure);
+    final principle = calculateLoanAmount(emi, interestRate, tenure);
 
     final model = performEMICalculation(
       principal: principle,
@@ -64,9 +63,6 @@ class EmiCalculatorCubit extends Cubit<EmiCalculatorState> {
 
     emit(EmiCalculatorSuccess(model));
   }
-
-
-
 
   calculateFlatVsReducing({
     required double principle,

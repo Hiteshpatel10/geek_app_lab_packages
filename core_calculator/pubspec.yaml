@@ -15,9 +15,12 @@ dependencies:
   validator_forge: ^2.0.0
   bloc: ^8.1.4
   flutter_bloc: ^8.1.6
+  pdf: ^3.11.1
 
   core_utility:
     path: /Users/user/Documents/hp/GITHUB/geek_app_lab_packages/core_utility
+  path_provider: ^2.1.5
+  open_file: ^3.5.10
 
 dev_dependencies:
   flutter_test:
@@ -29,6 +32,9 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  assets:
+    - assets/fonts/OpenSans-Regular.ttf
+    - assets/fonts/Roboto-Regular.ttf
 
   # To add assets to your package, add an assets section, like this:
   # assets:
