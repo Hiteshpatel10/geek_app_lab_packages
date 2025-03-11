@@ -14,4 +14,7 @@ class CoreCalculatorRoutes {
   static const flatVsReducingInput= '/calculator-flatVsReducingInput';
   static const flatVsReducingResult = '/calculator-flatVsReducingResult';
 
+  static const debtToIncomeInput = '/calculator-debtToIncomeInput';
+  static const debtToIncomeResult = '/calculator-debtToIncomeResult';
+
 }

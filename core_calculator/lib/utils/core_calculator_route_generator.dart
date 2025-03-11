@@ -6,6 +6,8 @@ import 'package:core_calculator/loan_calculator/view/emi_calculator/emi_tenure_c
 import 'package:core_calculator/loan_calculator/view/flat_vs_reducing_rate/flat_vs_reducing_rate_input_view.dart';
 import 'package:core_calculator/loan_calculator/view/flat_vs_reducing_rate/flat_vs_reducing_rate_result_view.dart';
 import 'package:core_calculator/loan_calculator/view/home_loan/home_loan_calculator_input_view.dart';
+import 'package:core_calculator/tools_module/view/debt_to_income/debt_to_income_input_view.dart';
+import 'package:core_calculator/tools_module/view/debt_to_income/debt_to_income_result_view.dart';
 import 'package:core_utility/navigation/core_calculator_routes.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +35,7 @@ MaterialPageRoute coreCalculatorRouteGenerator(RouteSettings settings) {
         builder: (_) => const CarLoanCalculatorInputView(),
       );
 
-      case CoreCalculatorRoutes.carBuyingLoanInput:
+    case CoreCalculatorRoutes.carBuyingLoanInput:
       return MaterialPageRoute(
         builder: (_) => const CarBuyingCalculatorInputView(),
       );
@@ -48,9 +50,19 @@ MaterialPageRoute coreCalculatorRouteGenerator(RouteSettings settings) {
         builder: (_) => const FlatVsReducingRateInputView(),
       );
 
-      case CoreCalculatorRoutes.flatVsReducingResult:
+    case CoreCalculatorRoutes.flatVsReducingResult:
       return MaterialPageRoute(
         builder: (_) => const FlatVsReducingRateResultView(),
+      );
+
+    case CoreCalculatorRoutes.debtToIncomeInput:
+      return MaterialPageRoute(
+        builder: (_) => const DebtToIncomeInputView(),
+      );
+
+    case CoreCalculatorRoutes.debtToIncomeResult:
+      return MaterialPageRoute(
+        builder: (_) => const DebtToIncomeResultView(),
       );
 
     default:
