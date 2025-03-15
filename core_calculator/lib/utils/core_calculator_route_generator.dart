@@ -1,3 +1,4 @@
+import 'package:core_calculator/home_module/view/calculator_landing_page.dart';
 import 'package:core_calculator/loan_calculator/view/car_loan/car_buying_calculator_input_view.dart';
 import 'package:core_calculator/loan_calculator/view/car_loan/car_loan_calculator_input_view.dart';
 import 'package:core_calculator/loan_calculator/view/emi_calculator/emi_calculator_input_view.dart';
@@ -17,6 +18,11 @@ MaterialPageRoute coreCalculatorRouteGenerator(RouteSettings settings) {
   dynamic args = settings.arguments;
 
   switch (settings.name) {
+    case CoreCalculatorRoutes.emiHome:
+      return MaterialPageRoute(
+        builder: (_) => const CalculatorLandingView(),
+      );
+
     case CoreCalculatorRoutes.emiInput:
       return MaterialPageRoute(
         builder: (_) => const EmiCalculatorInputView(),

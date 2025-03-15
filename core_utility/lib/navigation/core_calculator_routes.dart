@@ -1,5 +1,6 @@
 class CoreCalculatorRoutes {
 
+  static const emiHome= 'calculator-emiHome';
   static const emiInput= '/calculator-emiInput';
   static const emiResult = '/calculator-emiResult';
 

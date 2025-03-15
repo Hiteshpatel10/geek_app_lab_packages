@@ -10,7 +10,7 @@ class CalculatorLandingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,6 +88,16 @@ final List<CoreKeyValuePairModel<String, String, String>> data = [
     key: "Flat Vs Reducing",
     value: CoreCalculatorRoutes.flatVsReducingInput,
     extra: 'assets/icons/coin_stack.png',
+  ),
+  CoreKeyValuePairModel(
+    key: "Loan Affordability",
+    value: CoreCalculatorRoutes.loanAffordabilityInput,
+    extra: 'assets/icons/wallet_money.png',
+  ),
+  CoreKeyValuePairModel(
+    key: "Debt to Income",
+    value: CoreCalculatorRoutes.debtToIncomeInput,
+    extra: 'assets/icons/money_stash.jpg',
   ),
   CoreKeyValuePairModel(
     key: "Home Loan Calculator",
