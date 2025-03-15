@@ -17,4 +17,9 @@ class CoreCalculatorRoutes {
   static const debtToIncomeInput = '/calculator-debtToIncomeInput';
   static const debtToIncomeResult = '/calculator-debtToIncomeResult';
 
+
+  static const loanAffordabilityInput = '/calculator-loanAffordabilityInput';
+  static const loanAffordabilityResult = '/calculator-loanAffordabilityResult';
+
+
 }

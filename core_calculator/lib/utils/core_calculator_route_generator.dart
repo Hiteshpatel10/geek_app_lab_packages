@@ -8,6 +8,8 @@ import 'package:core_calculator/loan_calculator/view/flat_vs_reducing_rate/flat_
 import 'package:core_calculator/loan_calculator/view/home_loan/home_loan_calculator_input_view.dart';
 import 'package:core_calculator/tools_module/view/debt_to_income/debt_to_income_input_view.dart';
 import 'package:core_calculator/tools_module/view/debt_to_income/debt_to_income_result_view.dart';
+import 'package:core_calculator/tools_module/view/loan_eligibility/loan_affordability_input_view.dart';
+import 'package:core_calculator/tools_module/view/loan_eligibility/loan_affordability_result_view.dart';
 import 'package:core_utility/navigation/core_calculator_routes.dart';
 import 'package:flutter/material.dart';
 
@@ -63,6 +65,16 @@ MaterialPageRoute coreCalculatorRouteGenerator(RouteSettings settings) {
     case CoreCalculatorRoutes.debtToIncomeResult:
       return MaterialPageRoute(
         builder: (_) => const DebtToIncomeResultView(),
+      );
+
+    case CoreCalculatorRoutes.loanAffordabilityInput:
+      return MaterialPageRoute(
+        builder: (_) => const LoanAffordabilityInputView(),
+      );
+
+    case CoreCalculatorRoutes.loanAffordabilityResult:
+      return MaterialPageRoute(
+        builder: (_) => const LoanAffordabilityResultView(),
       );
 
     default:

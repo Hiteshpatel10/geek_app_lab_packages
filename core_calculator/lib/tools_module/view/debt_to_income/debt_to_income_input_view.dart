@@ -72,6 +72,11 @@ class _DebtToIncomeInputViewState extends State<DebtToIncomeInputView> {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         child: ElevatedButton(
           onPressed: () {
+
+            if(_formKey.currentState?.validate() == false){
+              return;
+            }
+
             if (pageView.page == 0) {
               pageView.nextPage(duration: Durations.medium4, curve: Curves.easeIn);
               return;
@@ -196,7 +201,7 @@ class _DebtToIncomeInputViewState extends State<DebtToIncomeInputView> {
       inputFormatters: [AmountInputFormatter()],
       keyboardType: TextInputType.number,
       validator: (String? value) {
-        if (isOptional && (value == null || value.isEmpty)) {
+        if (isOptional) {
           return null;
         }
         final amount = value?.toAmountFromINR();
