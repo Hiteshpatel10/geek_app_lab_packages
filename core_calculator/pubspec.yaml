@@ -18,9 +18,11 @@ dependencies:
   pdf: ^3.11.1
 
   core_utility:
-    path: /Users/user/Documents/hp/GITHUB/geek_app_lab_packages/core_utility
+    path: /Users/user/hp/github/geek_app_lab_packages/core_utility
+#    path: /Users/user/Documents/hp/GITHUB/geek_app_lab_packages/core_utility
   path_provider: ^2.1.5
   open_file: ^3.5.10
+  flutter_staggered_grid_view: ^0.7.0
 
 dev_dependencies:
   flutter_test:
@@ -35,6 +37,8 @@ flutter:
   assets:
     - assets/fonts/OpenSans-Regular.ttf
     - assets/fonts/Roboto-Regular.ttf
+    - assets/background/
+
 
   # To add assets to your package, add an assets section, like this:
   # assets:

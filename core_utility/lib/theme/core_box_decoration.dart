@@ -1,5 +1,6 @@
 import 'package:core_utility/theme/core_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:smooth_corner/smooth_corner.dart';
 
 class CoreBoxDecoration {
   static BoxDecoration getBoxDecoration({
@@ -33,4 +34,28 @@ class CoreBoxDecoration {
       boxShadow: removeShadow == false ? boxShadow : null,
     );
   }
+
+  static ShapeDecoration getSmoothBoxDecoration({
+    double borderRadius = 12,
+    BorderRadiusGeometry? borderRadiusGeometry,
+    Color? color ,
+    BorderSide? side,
+    Gradient? gradient,
+    DecorationImage? image,
+    BoxShape shape = BoxShape.rectangle,
+    List<BoxShadow>? shadows,
+  }) {
+    return ShapeDecoration(
+      gradient: gradient,
+      color: gradient == null ? (color ?? Colors.white ): null, // fallback only if gradient is null
+      shape: SmoothRectangleBorder(
+        borderRadius: borderRadiusGeometry?? BorderRadius.circular(borderRadius),
+        smoothness: 1,
+        side: side ?? BorderSide.none,
+      ),
+      image: image,
+      shadows: shadows,
+    );
+  }
+
 }
