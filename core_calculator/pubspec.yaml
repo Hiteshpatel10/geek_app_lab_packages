@@ -1,7 +1,8 @@
 name: core_calculator
 description: "A new Flutter project."
 version: 0.0.1
-homepage:
+publish_to: none
+homepage: none
 
 environment:
   sdk: '>=3.4.1 <4.0.0'
