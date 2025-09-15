@@ -7,6 +7,7 @@ class CoreRouteGenerator {
     RouteSettings settings,
     Map<String, MaterialPageRoute<dynamic>> routeBuilders,
   ) {
+
     String? key = settings.name?.split('-').first;
     if (key != null) {
       if (routeBuilders.containsKey(key)) {

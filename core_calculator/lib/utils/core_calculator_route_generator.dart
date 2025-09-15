@@ -19,68 +19,68 @@ MaterialPageRoute coreCalculatorRouteGenerator(RouteSettings settings) {
     case CoreCalculatorRoutes.emiHome:
       return MaterialPageRoute(
         builder: (_) => const CalculatorHomeView(),
+        settings: const RouteSettings(name: CoreCalculatorRoutes.emiHome),
       );
-
     case CoreCalculatorRoutes.emiInput:
       return MaterialPageRoute(
         builder: (_) => const EmiCalculatorInputView(),
+        settings: const RouteSettings(name: CoreCalculatorRoutes.emiInput),
       );
-
     case CoreCalculatorRoutes.emiResult:
       return MaterialPageRoute(
         builder: (_) => const EmiResultView(),
+        settings: const RouteSettings(name: CoreCalculatorRoutes.emiResult),
       );
-
     case CoreCalculatorRoutes.emiTenureInput:
       return MaterialPageRoute(
         builder: (_) => const EmiTenureCalculatorInputView(),
+        settings: const RouteSettings(name: CoreCalculatorRoutes.emiTenureInput),
       );
-
     case CoreCalculatorRoutes.carLoanInput:
       return MaterialPageRoute(
         builder: (_) => const CarLoanCalculatorInputView(),
+        settings: const RouteSettings(name: CoreCalculatorRoutes.carLoanInput),
       );
-
     case CoreCalculatorRoutes.carBuyingLoanInput:
       return MaterialPageRoute(
         builder: (_) => const CarBuyingCalculatorInputView(),
+        settings: const RouteSettings(name: CoreCalculatorRoutes.carBuyingLoanInput),
       );
-    //
     case CoreCalculatorRoutes.homeLoanInput:
       return MaterialPageRoute(
         builder: (_) => const HomeLoanCalculatorInputView(),
+        settings: const RouteSettings(name: CoreCalculatorRoutes.homeLoanInput),
       );
-
     case CoreCalculatorRoutes.flatVsReducingInput:
       return MaterialPageRoute(
         builder: (_) => const FlatVsReducingRateInputView(),
+        settings: const RouteSettings(name: CoreCalculatorRoutes.flatVsReducingInput),
       );
-
     case CoreCalculatorRoutes.flatVsReducingResult:
       return MaterialPageRoute(
         builder: (_) => const FlatVsReducingRateResultView(),
+        settings: const RouteSettings(name: CoreCalculatorRoutes.flatVsReducingResult),
       );
-
     case CoreCalculatorRoutes.debtToIncomeInput:
       return MaterialPageRoute(
         builder: (_) => const DebtToIncomeInputView(),
+        settings: const RouteSettings(name: CoreCalculatorRoutes.debtToIncomeInput),
       );
-
     case CoreCalculatorRoutes.debtToIncomeResult:
       return MaterialPageRoute(
         builder: (_) => const DebtToIncomeResultView(),
+        settings: const RouteSettings(name: CoreCalculatorRoutes.debtToIncomeResult),
       );
-
     case CoreCalculatorRoutes.loanAffordabilityInput:
       return MaterialPageRoute(
         builder: (_) => const LoanAffordabilityInputView(),
+        settings: const RouteSettings(name: CoreCalculatorRoutes.loanAffordabilityInput),
       );
-
     case CoreCalculatorRoutes.loanAffordabilityResult:
       return MaterialPageRoute(
         builder: (_) => const LoanAffordabilityResultView(),
+        settings: const RouteSettings(name: CoreCalculatorRoutes.loanAffordabilityResult),
       );
-
     default:
       return MaterialPageRoute(
         builder: (_) {
@@ -97,6 +97,7 @@ MaterialPageRoute coreCalculatorRouteGenerator(RouteSettings settings) {
             ),
           );
         },
+        settings: const RouteSettings(name: 'error'),
       );
   }
 }

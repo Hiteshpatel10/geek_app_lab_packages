@@ -19,7 +19,7 @@ dependencies:
   pdf: ^3.11.1
 
   core_utility:
-    path: /Users/user/hp/github/geek_app_lab_packages/core_utility
+    path: /home/hitesh-patel/Dev/github/geek_app_lab_packages/core_utility
 #    path: /Users/user/Documents/hp/GITHUB/geek_app_lab_packages/core_utility
   path_provider: ^2.1.5
   open_file: ^3.5.10

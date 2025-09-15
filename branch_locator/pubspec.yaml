@@ -18,8 +18,7 @@ dependencies:
   alphabet_navigation: ^2.1.0
 
   core_utility:
-    path: /Users/user/hp/github/geek_app_lab_packages/core_utility
-
+    path: /home/hitesh-patel/Dev/github/geek_app_lab_packages/core_utility
 
 
 
