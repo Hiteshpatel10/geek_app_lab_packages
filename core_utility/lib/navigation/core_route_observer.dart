@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 
 class CoreRouteObserver extends RouteObserver<ModalRoute<dynamic>> {
   void _sendScreenView(Route<dynamic> route) {
-    final screenName = route.settings.name ?? 'Unknown';
-    Clarity.setCurrentScreenName(screenName);
+    final screenName = route.settings.name;
+    if (screenName != null) Clarity.setCurrentScreenName(screenName);
   }
 
   @override
@@ -17,7 +17,7 @@ class CoreRouteObserver extends RouteObserver<ModalRoute<dynamic>> {
   void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
     super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
     if (newRoute != null) {
-      _sendScreenView(newRoute);
+      // _sendScreenView(newRoute);
     }
   }
 
@@ -25,7 +25,7 @@ class CoreRouteObserver extends RouteObserver<ModalRoute<dynamic>> {
   void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
     super.didPop(route, previousRoute);
     if (previousRoute != null) {
-      _sendScreenView(previousRoute);
+      // _sendScreenView(previousRoute);
     }
   }
 }
